@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clínica de Fertilidad | Fertility Center</title>
+  <meta name="description" content="Clínica de fertilidad y bienestar reproductivo: FIV, inseminación, preservación de la fertilidad, diagnóstico integral y acompañamiento emocional."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* ======= Reset básico ======= */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body { margin: 0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; color: #1d1d1f; background: #fff; }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+
+    /* ======= Paleta (sin :root) ======= */
+    .c-primary { color: #274DF5; }
+    .bg-primary { background: #274DF5; }
+    .bd-primary { border-color: #274DF5; }
+    .bg-soft { position: relative; background: linear-gradient(180deg, #66a0ff 0%, #ffffff 100%); overflow:hidden; }
+    .text-dim { color: #555; }
+    .text-soft { color: #777; }
+
+    /* ======= Utilidades ======= */
+    .container { width: min(1120px, 92%); margin: 0 auto; }
+    .grid { display: grid; gap: 24px; }
+    .btn { display:inline-flex; align-items:center; justify-content:center; padding: 14px 20px; border-radius: 12px; font-weight: 600; border: 1px solid transparent; transition: transform .06s ease, box-shadow .2s ease, background .2s ease; }
+    .btn-primary { background: #274DF5; color: #fff; }
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 10px 22px rgba(234,122,122,.25); }
+    .btn-ghost { background: #fff; border-color: #e7e7e8; }
+    .pill { padding: 8px 14px; border-radius: 999px; font-weight: 600; font-size: 13px; background: #fff; border: 1px solid #f0d6d6; color: #274DF5; display:inline-block; }
+    .card { background:#fff; border:1px solid #eee; border-radius: 18px; padding: 22px; box-shadow: 0 4px 10px rgba(10,10,10,.02); }
+    .shadow-soft { box-shadow: 0 24px 60px rgba(234,122,122,.12); }
+
+    /* ======= Header ======= */
+    header { position: sticky; top: 0; z-index: 40; background: #fff; border-bottom: 1px solid #f2f2f3; }
+    .nav { display:flex; align-items:center; justify-content:space-between; height: 70px; }
+    .brand { display:flex; align-items:center; gap: 10px; font-weight: 800; letter-spacing: -0.3px; }
+    .brand .dot { width: 12px; height: 12px; background:#274DF5; border-radius:50%; display:inline-block; }
+    .menu { display:flex; gap: 22px; align-items:center; }
+    .menu a { font-weight:600; font-size: 14px; }
+
+    /* ======= Hero ======= */
+    .hero { position: relative; background: linear-gradient(180deg, #66a0ff 0%, #ffffff 100%); overflow:hidden; }
+    .hero-wrap { display:grid; grid-template-columns: 1.15fr 0.85fr; gap: 34px; align-items:center; min-height: 560px; padding: 40px 0; }
+    .hero h1 { font-size: clamp(32px, 5vw, 52px); line-height: 1.05; margin: 12px 0 16px; letter-spacing: -0.8px; }
+    .hero p { font-size: 16px; color:#5a5a5c; max-width: 56ch; }
+    .hero .actions { display:flex; gap: 12px; margin-top: 18px; flex-wrap: wrap; }
+    .hero-figure { position: relative; aspect-ratio: 4/3; border-radius: 20px; overflow:hidden; box-shadow: 0 24px 60px rgba(10,10,10,.15); }
+    .hero-figure .badge { position:absolute; left: 14px; bottom: 14px; background:#fff; border:1px solid #f0d6d6; padding: 10px 14px; border-radius: 12px; font-weight: 600; display:flex; gap:10px; align-items:center; }
+
+    /* ======= Logos / confianza ======= */
+    .trust { padding: 24px 0 0; }
+    .trust .row { display:flex; align-items:center; gap: 28px; flex-wrap: wrap; opacity: .8; }
+
+    /* ======= Secciones ======= */
+    .section { padding: 76px 0; }
+    .section h2 { font-size: clamp(26px, 3.4vw, 38px); letter-spacing: -0.5px; margin: 0 0 12px; }
+    .section p.lead { color:#5a5a5c; max-width: 70ch; }
+
+    .services { grid-template-columns: repeat(3, 1fr); }
+    .service .icon { width: 44px; height: 44px; border-radius: 12px; background: #66a0ff; display:grid; place-items:center; border:1px solid #ffe1df; margin-bottom: 12px; font-weight: 800; color:#274DF5; }
+
+    /* ======= Números ======= */
+    .stats { display:grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 16px; background:#fff; border:1px solid #f0d6d6; border-radius: 14px; }
+    .stats .item { text-align:center; padding: 18px 10px; }
+    .stats .num { font-weight: 800; font-size: 34px; color:#274DF5; letter-spacing: -0.5px; }
+    .stats .lbl { font-size: 13px; color:#666; }
+
+    /* ======= Planes ======= */
+    .plans { grid-template-columns: repeat(3, 1fr); }
+    .plan { padding: 26px; border-radius: 18px; background:#fff; border:1px solid #eee; }
+    .plan.featured { border-color:#274DF5; box-shadow: 0 18px 40px rgba(234,122,122,.18); }
+    .plan h3 { margin: 0 0 6px; }
+    .price { font-size: 36px; font-weight: 800; color:#274DF5; margin: 6px 0 14px; }
+    .plan ul { list-style: none; padding: 0; margin: 0 0 16px; }
+    .plan ul li { padding: 8px 0; color:#444; }
+
+    /* ======= Especialistas ======= */
+    .doctors { grid-template-columns: repeat(4, 1fr); }
+    .doctor img { aspect-ratio: 1/1; object-fit: cover; border-radius: 14px; }
+    .doctor .name { font-weight: 700; margin-top: 10px; }
+    .doctor .role { color:#777; font-size: 14px; }
+
+    /* ======= Testimonios ======= */
+    .testimonials { grid-template-columns: repeat(3, 1fr); }
+    .quote { border:1px solid #f0d6d6; border-radius: 16px; padding: 20px; background:#fff; }
+    .quote p { color:#444; }
+    .quote .who { margin-top: 10px; font-weight: 700; }
+    .quote .meta { color:#777; font-size: 13px; }
+
+    /* ======= Contacto ======= */
+    .contact { display:grid; grid-template-columns: 1.1fr .9fr; gap: 28px; }
+    .contact .form .in { width: 100%; padding: 14px 14px; border:1px solid #e7e7e8; border-radius: 12px; margin-bottom: 12px; font: inherit; }
+    .contact .form textarea { min-height: 120px; resize: vertical; }
+    .contact .card { position: relative; background: linear-gradient(180deg, #66a0ff 0%, #ffffff 100%); overflow:hidden; }
+
+    /* ======= Footer ======= */
+    footer { background: #1f1f22; color:#d9dadb; padding: 56px 0 28px; margin-top: 40px; }
+    footer .grid { grid-template-columns: 1.2fr .8fr .8fr .8fr; }
+    footer a { color: #e8e8ea; }
+    .copy { margin-top: 30px; color:#a6a7aa; font-size: 14px; border-top: 1px solid #2b2b2f; padding-top: 18px; }
+
+    /* ======= Mobile nav (oculto en desktop) ======= */
+    /* NEW */
+    .burger { display:none; width:42px; height:42px; border-radius:10px; border:1px solid #e7e7e8; background:#fff; align-items:center; justify-content:center; }
+    .burger i { display:block; width:20px; height:2px; background:#1d1d1f; position:relative; }
+    .burger i::before, .burger i::after { content:""; position:absolute; left:0; width:100%; height:2px; background:#1d1d1f; }
+    .burger i::before { top:-6px; }
+    .burger i::after { top:6px; }
+
+    /* ======= Responsivo ======= */
+    @media (max-width: 1000px) {
+      .hero-wrap { grid-template-columns: 1fr; }
+      .hero-figure { order: -1; }
+      .services { grid-template-columns: 1fr 1fr; }
+      .plans { grid-template-columns: 1fr 1fr; }
+      .doctors { grid-template-columns: 1fr 1fr 1fr; }
+      .testimonials { grid-template-columns: 1fr 1fr; }
+      footer .grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .contact { grid-template-columns: 1fr; }
+    }
+
+    /* ======= Móviles <= 768px ======= */
+    /* NEW */
+    @media (max-width: 768px) {
+      .container { width: min(1160px, 94%); }
+      .section { padding: 52px 0; }
+      .nav { height: 64px; }
+      .hero-wrap { min-height: unset; padding: 28px 0; gap: 22px; }
+      .hero p { font-size: 15px; }
+      .stats { grid-template-columns: 1fr; gap: 8px; }
+      .price { font-size: 30px; }
+      .plan { padding: 20px; }
+      .doctor .role { font-size: 13px; }
+
+      /* menú hamburguesa */
+      .burger { display:flex; }
+      .menu { 
+        position: fixed; inset: 64px 0 0 0;
+        background:#fff; 
+        border-top:1px solid #f2f2f3;
+        display: grid; gap: 10px; padding: 16px;
+        transform: translateY(-8px); opacity: 0; pointer-events: none;
+        transition: transform .2s ease, opacity .2s ease;
+      }
+      .menu a { padding: 12px 14px; border-radius: 10px; border:1px solid #efefef; }
+      .menu .btn { width: 100%; }
+
+      /* estado abierto */
+      header.open .menu { transform: translateY(0); opacity: 1; pointer-events: auto; }
+    }
+
+    /* ======= Móviles pequeños <= 640px ======= */
+    @media (max-width: 640px) {
+      .services { grid-template-columns: 1fr; }
+      .plans { grid-template-columns: 1fr; }
+      .doctors { grid-template-columns: 1fr 1fr; }
+      .testimonials { grid-template-columns: 1fr; }
+      footer .grid { grid-template-columns: 1fr; }
+      .hero .actions .btn { width: 100%; }
+      .pill { font-size: 12px; }
+      .hero-figure { border-radius: 14px; }
+      .card { border-radius: 14px; padding: 18px; }
+    }
+
+    /* ======= Mejoras táctiles ======= */
+    /* NEW */
+    @media (hover: none) {
+      .btn-primary:hover { transform:none; box-shadow:none; }
+      a, button { touch-action: manipulation; }
+    }
+  </style>
+</head>
+<body>
+  <!-- ================= Header ================= -->
+  <header id="site-header">
+    <div class="container nav">
+      <a class="brand" href="#">
+        <span class="dot"></span>
+        <span>Fertility<span class="c-primary">Center</span></span>
+      </a>
+
+      <!-- NEW: botón hamburguesa (solo se ve en móvil por CSS) -->
+      <button class="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mainmenu">
+        <i></i>
+      </button>
+
+      <nav id="mainmenu" class="menu" role="navigation">
+        <a href="#servicios">Servicios</a>
+        <a href="#planes">Planes</a>
+        <a href="#especialistas">Especialistas</a>
+        <a href="#testimonios">Historias</a>
+        <a href="#contacto" class="btn btn-primary">Solicitar cita</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ================= Hero ================= -->
+  <section class="hero">
+    <div class="container hero-wrap">
+      <div>
+        <span class="pill">Clínica de Fertilidad</span>
+        <h1>Tratamientos de Fertilidad con enfoque humano y resultados reales</h1>
+        <p>Te acompañamos en cada paso: desde el diagnóstico hasta el nacimiento. Ofrecemos FIV, inseminación, preservación de la fertilidad, donación, y apoyo emocional integral para que tu sueño de ser familia sea una realidad.</p>
+        <div class="actions">
+          <a href="#contacto" class="btn btn-primary">Reservar valoración</a>
+          <a href="#planes" class="btn btn-ghost">Ver planes</a>
+        </div>
+        <div style="margin-top:18px" class="stats">
+          <div class="item">
+            <div class="num">95%</div>
+            <div class="lbl">Satisfacción de pacientes</div>
+          </div>
+          <div class="item">
+            <div class="num">+1,200</div>
+            <div class="lbl">Familias acompañadas</div>
+          </div>
+          <div class="item">
+            <div class="num">15 años</div>
+            <div class="lbl">Experiencia clínica</div>
+          </div>
+        </div>
+      </div>
+      <figure class="hero-figure">
+        <img src="clinica.png" alt="Atención en clínica de fertilidad" />
+        <div class="badge">
+          <span style="width:10px;height:10px;background:#274DF5;border-radius:50%"></span>
+          Atención cálida y personalizada
+        </div>
+      </figure>
+    </div>
+    <div class="container trust">
+      <div class="row text-soft" aria-label="marcas de confianza">
+        <small>Miembro de: ASRM • ESHRE • Red Latinoamericana de Reproducción</small>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Servicios ================= -->
+  <section id="servicios" class="section">
+    <div class="container">
+      <header style="margin-bottom: 18px">
+        <h2>Servicios de Fertilidad</h2>
+        <p class="lead">Protocolos actualizados, tecnología de vanguardia y un equipo multidisciplinario para crear un plan a tu medida.</p>
+      </header>
+      <div class="grid services">
+        <article class="card service">
+          <div class="icon">FIV</div>
+          <h3>Fecundación in Vitro (FIV)</h3>
+          <p class="text-dim">Tratamientos personalizados con laboratorio de alta complejidad y cultivo embrionario de precisión.</p>
+        </article>
+        <article class="card service">
+          <div class="icon">IA</div>
+          <h3>Inseminación Artificial</h3>
+          <p class="text-dim">Opciones con semen de pareja o banco. Ciclos suaves y seguimiento cercano.</p>
+        </article>
+        <article class="card service">
+          <div class="icon">PGT</div>
+          <h3>Test Genético Preimplantacional</h3>
+          <p class="text-dim">Mayor tasa de implantación y reducción de riesgo genético con análisis embrionario.</p>
+        </article>
+        <article class="card service">
+          <div class="icon">OVA</div>
+          <h3>Preservación de la Fertilidad</h3>
+          <p class="text-dim">Vitrificación de óvulos y espermatozoides para decidir el mejor momento.</p>
+        </article>
+        <article class="card service">
+          <div class="icon">DON</div>
+          <h3>Donación de Óvulos y Semen</h3>
+          <p class="text-dim">Programas con estricta selección y apoyo legal/psicológico integral.</p>
+        </article>
+        <article class="card service">
+          <div class="icon">♥</div>
+          <h3>Acompañamiento Emocional</h3>
+          <p class="text-dim">Psicología, nutrición y estilo de vida fértil para cuidar cuerpo y mente.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Planes ================= -->
+  <section id="planes" class="section bg-soft">
+    <div class="container">
+      <header style="margin-bottom:18px">
+        <h2>Planes de Fertilidad</h2>
+        <p class="lead">Transparencia total en precios y alcance. Todos incluyen controles, educación y acompañamiento.</p>
+      </header>
+      <div class="grid plans">
+        <article class="plan card">
+          <h3>Plan Diagnóstico</h3>
+          <div class="price">$ 499.000</div>
+          <ul>
+            <li>Consulta con especialista</li>
+            <li>Ecografía + perfil hormonal</li>
+            <li>Plan de acción personalizado</li>
+          </ul>
+          <a class="btn btn-ghost" href="#contacto">Agendar</a>
+        </article>
+        <article class="plan card featured">
+          <span class="pill" style="background:#fff">Más elegido</span>
+          <h3>IA – Inseminación</h3>
+          <div class="price">$ 2.990.000</div>
+          <ul>
+            <li>Monitoreo folicular</li>
+            <li>Preparación seminal</li>
+            <li>Soporte lúteo</li>
+          </ul>
+          <a class="btn btn-primary" href="#contacto">Quiero este plan</a>
+        </article>
+        <article class="plan card">
+          <h3>FIV Completo</h3>
+          <div class="price">$ 12.900.000</div>
+          <ul>
+            <li>Estimulación + punción ovárica</li>
+            <li>ICSI y cultivo prolongado</li>
+            <li>Transferencia embrionaria</li>
+          </ul>
+          <a class="btn btn-ghost" href="#contacto">Solicitar información</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Especialistas ================= -->
+  <section id="especialistas" class="section">
+    <div class="container">
+      <header style="margin-bottom:18px">
+        <h2>Especialistas en Reproducción Asistida</h2>
+        <p class="lead">Un equipo con trayectoria internacional en medicina reproductiva, embriología y apoyo integral.</p>
+      </header>
+      <div class="grid doctors">
+        <article class="doctor">
+          <img src="doctora.jpg" alt="Dra. Laura González"/>
+          <div class="name">Dra. Laura González</div>
+          <div class="role">Ginecóloga Reproductiva</div>
+        </article>
+        <article class="doctor">
+          <img src="doctor.jpg" alt="Dr. Mauricio Pérez"/>
+          <div class="name">Dr. Mauricio Pérez</div>
+          <div class="role">Embriólogo Senior</div>
+        </article>
+        <article class="doctor">
+          <img src="doctora.jpg" alt="Dra. Andrea Ruiz"/>
+          <div class="name">Dra. Andrea Ruiz</div>
+          <div class="role">Endocrinóloga Reproductiva</div>
+        </article>
+        <article class="doctor">
+          <img src="doctor3.jpg" alt="Ps. Carlos Méndez"/>
+          <div class="name">Ps. Carlos Méndez</div>
+          <div class="role">Psicólogo perinatal</div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Testimonios ================= -->
+  <section id="testimonios" class="section bg-soft">
+    <div class="container">
+      <header style="margin-bottom:18px">
+        <h2>Historias de Esperanza</h2>
+        <p class="lead">Familias que confiaron en nosotros para escribir el capítulo más importante de sus vidas.</p>
+      </header>
+      <div class="grid testimonials">
+        <article class="quote">
+          <p>“Después de años intentando, la clínica nos acompañó con paciencia y claridad. Hoy nuestro bebé está en casa.”</p>
+          <div class="who">Ana & David</div>
+          <div class="meta">FIV con PGT-A</div>
+        </article>
+        <article class="quote">
+          <p>“La inseminación fue un proceso respetuoso y cercano. Nos sentimos escuchadas en todo momento.”</p>
+          <div class="who">Mariana & Sofía</div>
+          <div class="meta">IA con banco de semen</div>
+        </article>
+        <article class="quote">
+          <p>“Preservé mis óvulos antes de un tratamiento médico. Me informaron cada paso con empatía.”</p>
+          <div class="who">Juliana M.</div>
+          <div class="meta">Vitrificación de óvulos</div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Contacto ================= -->
+  <section id="contacto" class="section">
+    <div class="container contact">
+      <div class="form">
+        <h2>Agenda tu valoración</h2>
+        <p class="text-dim">Déjanos tus datos y nuestro equipo se comunicará para orientarte en el mejor plan.</p>
+        <form action="#" method="post">
+          <input class="in" type="text" name="nombre" placeholder="Nombre completo" required>
+          <input class="in" type="tel" name="telefono" placeholder="Teléfono" required>
+          <input class="in" type="email" name="email" placeholder="Correo electrónico" required>
+          <textarea class="in" name="mensaje" placeholder="Cuéntanos tu caso (opcional)"></textarea>
+          <button class="btn btn-primary" type="submit">Solicitar cita</button>
+        </form>
+      </div>
+      <aside class="card">
+        <h3>Información</h3>
+        <p class="text-dim">Calle 123 #45-67, Piso 4 – Centro Médico, Bogotá</p>
+        <p class="text-dim">Lun – Vie 7:00 a.m. – 6:00 p.m. · Sáb 8:00 a.m. – 1:00 p.m.</p>
+        <p class="text-dim">Atención virtual para todo el país.</p>
+        <div style="margin-top: 10px; display:flex; gap:10px; align-items:center; flex-wrap:wrap">
+          <a class="pill" href="tel:+5712345678">Llamar</a>
+          <a class="pill" href="mailto:contacto@fertilitycenter.co">Escribir</a>
+          <a class="pill" href="#">WhatsApp</a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ================= Footer ================= -->
+  <footer>
+    <div class="container grid">
+      <div>
+        <div class="brand" style="color:#fff"><span class="dot"></span><span>Fertility<span class="c-primary">Center</span></span></div>
+        <p class="text-soft" style="margin-top: 14px; max-width: 56ch;">Cuidamos tu salud reproductiva con ciencia, ética y calidez humana. Todos los procedimientos se realizan bajo estrictos protocolos de calidad.</p>
+      </div>
+      <div>
+        <h4>Servicios</h4>
+        <ul style="list-style:none; padding:0; margin: 10px 0 0">
+          <li><a href="#servicios">FIV</a></li>
+          <li><a href="#servicios">Inseminación</a></li>
+          <li><a href="#servicios">PGT</a></li>
+          <li><a href="#servicios">Preservación</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Centro</h4>
+        <ul style="list-style:none; padding:0; margin: 10px 0 0">
+          <li><a href="#especialistas">Equipo</a></li>
+          <li><a href="#testimonios">Historias</a></li>
+          <li><a href="#planes">Planes</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul style="list-style:none; padding:0; margin: 10px 0 0">
+          <li><a href="#">Términos y condiciones</a></li>
+          <li><a href="#">Política de privacidad</a></li>
+          <li><a href="#">Consentimientos informados</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container copy">© <span id="y"></span> Fertility Center. Todos los derechos reservados.</div>
+  </footer>
+
+  <script>
+    // Año dinámico
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // NEW: Toggle menú móvil accesible
+    const header = document.getElementById('site-header');
+    const burger = document.querySelector('.burger');
+    const menu = document.getElementById('mainmenu');
+
+    function closeMenu() {
+      header.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+    }
+
+    burger.addEventListener('click', () => {
+      const isOpen = header.classList.toggle('open');
+      burger.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    // Cierra al hacer click en enlaces del menú (solo móvil)
+    menu.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        if (window.matchMedia('(max-width: 768px)').matches) closeMenu();
+      });
+    });
+
+    // Cierra con ESC
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMenu();
+    });
+  </script>
+</body>
+</html>
